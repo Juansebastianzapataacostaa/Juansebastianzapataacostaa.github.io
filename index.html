@@ -17,11 +17,8 @@
       --text2:    #A0A0A0;
       --text3:    #555555;
       --green:    #22C55E;
-      --green-dim: rgba(34,197,94,0.1);
+      --green-dim: rgba(34,197,94,0.10);
       --green-bd:  rgba(34,197,94,0.25);
-      --blue:     #3B82F6;
-      --amber:    #F59E0B;
-      --red:      #EF4444;
       --display:  'Space Grotesk', system-ui, sans-serif;
       --body:     'Inter', system-ui, sans-serif;
       --mono:     'JetBrains Mono', monospace;
@@ -52,8 +49,7 @@
       border-bottom: 1px solid var(--border);
     }
     .nav-name {
-      font-family: var(--display);
-      font-size: 14px; font-weight: 700;
+      font-family: var(--display); font-size: 14px; font-weight: 700;
       letter-spacing: -0.02em; color: var(--text);
     }
     .nav-name span { color: var(--green); }
@@ -66,23 +62,34 @@
     .nav-a:hover { color: var(--text); background: var(--bg3); }
     .nav-cta {
       font-family: var(--display); font-size: 12px; font-weight: 700;
-      letter-spacing: 0.01em;
       color: #052e16; background: var(--green);
       padding: 6px 16px; border-radius: 5px; margin-left: 8px;
       transition: opacity .15s;
     }
     .nav-cta:hover { opacity: .82; }
+    .lang-toggle {
+      display: flex; align-items: center;
+      border: 1px solid var(--border); border-radius: 5px;
+      overflow: hidden; margin-left: 8px;
+    }
+    .lang-btn {
+      font-family: var(--mono); font-size: 10px; font-weight: 500;
+      letter-spacing: .08em; color: var(--text2);
+      background: none; border: none;
+      padding: 5px 10px; cursor: pointer;
+      transition: color .15s, background .15s;
+    }
+    .lang-btn.active { color: var(--green); background: var(--green-dim); }
+    .lang-sep { width: 1px; height: 10px; background: var(--border); }
+    [data-i18n] { transition: opacity .12s; }
+    body.sw [data-i18n] { opacity: 0; }
 
     /* ── LAYOUT ── */
     .wrap { max-width: 800px; margin: 0 auto; padding: 0 40px; }
 
     /* ── BIO ── */
     .bio { padding: 106px 0 72px; }
-    .bio-grid {
-      display: grid;
-      grid-template-columns: 1fr 152px;
-      gap: 44px; align-items: start;
-    }
+    .bio-grid { display: grid; grid-template-columns: 1fr 152px; gap: 44px; align-items: start; }
     .bio-tag {
       font-family: var(--mono); font-size: 10px; font-weight: 500;
       letter-spacing: .14em; text-transform: uppercase;
@@ -92,40 +99,27 @@
     .bio-tag::before { content: ''; width: 16px; height: 1px; background: var(--green); }
     .bio h1 {
       font-family: var(--display);
-      font-size: clamp(34px, 5.2vw, 52px);
+      font-size: clamp(32px, 5vw, 50px);
       font-weight: 700; line-height: 1.05;
-      letter-spacing: -0.03em; color: var(--text);
-      margin-bottom: 20px;
+      letter-spacing: -0.03em; color: var(--text); margin-bottom: 20px;
     }
     .bio h1 em { font-style: normal; color: var(--green); }
-    .bio-p {
-      font-size: 15px; color: var(--text2);
-      line-height: 1.82; margin-bottom: 16px;
-    }
+    .bio-p { font-size: 15px; color: var(--text2); line-height: 1.82; margin-bottom: 16px; }
     .bio-p strong { font-weight: 600; color: var(--text); }
-    .bio-pills {
-      display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 24px;
-    }
+    .bio-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 24px; }
     .pill {
       font-family: var(--mono); font-size: 10px; font-weight: 500;
-      letter-spacing: .04em;
-      color: var(--text2); background: var(--bg2);
-      border: 1px solid var(--border2);
+      letter-spacing: .04em; color: var(--text2);
+      background: var(--bg2); border: 1px solid var(--border2);
       padding: 4px 11px; border-radius: 4px;
     }
-    .pill.green {
-      color: var(--green);
-      background: var(--green-dim);
-      border-color: var(--green-bd);
-    }
+    .pill.green { color: var(--green); background: var(--green-dim); border-color: var(--green-bd); }
     .live-badge {
       display: inline-flex; align-items: center; gap: 7px;
       font-family: var(--body); font-size: 12px; font-weight: 500;
-      color: var(--green);
-      background: rgba(34,197,94,.07);
+      color: var(--green); background: rgba(34,197,94,.07);
       border: 1px solid rgba(34,197,94,.2);
-      padding: 5px 13px; border-radius: 4px;
-      margin-bottom: 26px;
+      padding: 5px 13px; border-radius: 4px; margin-bottom: 26px;
     }
     .live-dot {
       width: 6px; height: 6px; border-radius: 50%;
@@ -150,199 +144,84 @@
       transition: border-color .15s, color .15s, transform .15s;
     }
     .btn-outline:hover { border-color: var(--green); color: var(--green); transform: translateY(-1px); }
-
-    /* Photo */
-    .photo-wrap {
-      display: flex; flex-direction: column; align-items: center; gap: 10px;
-      padding-top: 8px;
-    }
-    .photo {
-      width: 144px; height: 144px; border-radius: 10px;
-      object-fit: cover;
-      border: 2px solid var(--border2);
-      background: var(--bg3); display: block;
-    }
-    .photo-name {
-      font-family: var(--display); font-size: 11px; font-weight: 600;
-      color: var(--text3); text-align: center; letter-spacing: .02em;
-    }
+    .photo-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; padding-top: 8px; }
+    .photo { width: 144px; height: 144px; border-radius: 10px; object-fit: cover; border: 2px solid var(--border2); background: var(--bg3); display: block; }
+    .photo-name { font-family: var(--display); font-size: 11px; font-weight: 600; color: var(--text3); text-align: center; letter-spacing: .02em; }
 
     /* ── SECTION ── */
     section { padding: 64px 0; border-top: 1px solid var(--border); }
     .sec-head { margin-bottom: 36px; }
-    .sec-tag {
-      font-family: var(--mono); font-size: 10px; font-weight: 500;
-      letter-spacing: .14em; text-transform: uppercase;
-      color: var(--green); margin-bottom: 8px;
-    }
-    .sec-title {
-      font-family: var(--display);
-      font-size: clamp(24px, 3.2vw, 34px);
-      font-weight: 700; letter-spacing: -0.03em; color: var(--text);
-    }
+    .sec-tag { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+    .sec-title { font-family: var(--display); font-size: clamp(24px, 3.2vw, 34px); font-weight: 700; letter-spacing: -0.03em; color: var(--text); }
 
-    /* ── ABOUT CARDS ── */
+    /* ── ABOUT ── */
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .about-card {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 8px; padding: 24px 26px;
-    }
-    .about-card h3 {
-      font-family: var(--display); font-size: 14px; font-weight: 700;
-      color: var(--green); letter-spacing: -.01em;
-      margin-bottom: 10px;
-    }
+    .about-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 24px 26px; }
+    .about-card h3 { font-family: var(--display); font-size: 14px; font-weight: 700; color: var(--green); margin-bottom: 10px; }
     .about-card p { font-size: 13.5px; color: var(--text2); line-height: 1.8; }
 
     /* ── PROJECTS ── */
     .proj { padding: 36px 0; border-top: 1px solid var(--border); }
     .proj:first-child { border-top: none; }
-    .proj-meta {
-      font-family: var(--mono); font-size: 10px; font-weight: 500;
-      letter-spacing: .1em; text-transform: uppercase;
-      color: var(--text3); margin-bottom: 6px;
-    }
-    .proj-name {
-      font-family: var(--display);
-      font-size: clamp(18px, 2.6vw, 24px);
-      font-weight: 700; letter-spacing: -0.03em; color: var(--text);
-      margin-bottom: 18px;
-    }
+    .proj-meta { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; }
+    .proj-name { font-family: var(--display); font-size: clamp(18px, 2.5vw, 24px); font-weight: 700; letter-spacing: -0.03em; color: var(--text); margin-bottom: 18px; }
 
-    /* Stat strip */
-    .stat-strip {
-      display: flex; gap: 0;
-      border: 1px solid var(--border);
-      border-radius: 6px; overflow: hidden;
-      margin-bottom: 20px;
-    }
-    .stat-cell {
-      flex: 1; padding: 16px 20px;
-      border-right: 1px solid var(--border);
-      background: var(--bg2);
-      border-left: 2px solid transparent;
-    }
+    .stat-strip { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 20px; }
+    .stat-cell { flex: 1; padding: 16px 20px; border-right: 1px solid var(--border); background: var(--bg2); border-left: 2px solid transparent; }
     .stat-cell:first-child { border-left-color: var(--green); }
     .stat-cell:last-child { border-right: none; }
-    .stat-label {
-      font-family: var(--mono); font-size: 9px; font-weight: 500;
-      letter-spacing: .12em; text-transform: uppercase;
-      color: var(--text3); margin-bottom: 5px;
-    }
-    .stat-val {
-      font-family: var(--display);
-      font-size: 24px; font-weight: 700;
-      letter-spacing: -0.03em; color: var(--text); line-height: 1;
-    }
+    .stat-label { font-family: var(--mono); font-size: 9px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); margin-bottom: 5px; }
+    .stat-val { font-family: var(--display); font-size: 22px; font-weight: 700; letter-spacing: -0.03em; color: var(--text); line-height: 1.1; }
     .stat-val.green { color: var(--green); }
-    .stat-val.blue  { color: var(--blue); }
-    .stat-val.amber { color: var(--amber); }
     .stat-note { font-size: 11px; color: var(--text3); margin-top: 4px; line-height: 1.4; }
 
-    /* Visual block */
-    .proj-visual {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 6px; padding: 20px 22px; margin-bottom: 20px;
-    }
-    .visual-label {
-      font-family: var(--mono); font-size: 9px; font-weight: 500;
-      letter-spacing: .12em; text-transform: uppercase;
-      color: var(--text3); margin-bottom: 14px;
-    }
+    .proj-visual { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 20px 22px; margin-bottom: 20px; }
+    .visual-label { font-family: var(--mono); font-size: 9px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); margin-bottom: 14px; }
 
-    .proj-desc {
-      font-size: 14px; color: var(--text2); line-height: 1.84; margin-bottom: 16px;
-    }
+    .proj-desc { font-size: 14px; color: var(--text2); line-height: 1.84; margin-bottom: 16px; }
     .proj-desc strong { font-weight: 600; color: var(--text); }
-    .proj-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-    .tag {
-      font-family: var(--mono); font-size: 10px;
-      color: var(--text3); background: var(--bg3);
-      border: 1px solid var(--border);
-      padding: 3px 9px; border-radius: 4px;
-    }
+    .proj-tools { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { font-family: var(--mono); font-size: 10px; color: var(--text3); background: var(--bg3); border: 1px solid var(--border); padding: 3px 9px; border-radius: 4px; }
 
-    /* ── SKILLS ── */
-    .skills-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
-    }
+    /* ── TOOL ICONS ── */
+    .tool-icons { display: flex; flex-wrap: wrap; gap: 8px; background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 20px 22px; margin-bottom: 20px; }
+    .ti { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 60px; }
+    .ti-box { width: 46px; height: 46px; border-radius: 8px; background: var(--bg3); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; transition: border-color .15s; }
+    .ti-box:hover { border-color: var(--green); }
+    .ti-box svg { width: 26px; height: 26px; }
+    .ti-label { font-family: var(--mono); font-size: 9px; font-weight: 500; color: var(--text3); text-align: center; line-height: 1.2; }
+
+    /* ── SKILLS GRID ── */
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
     .sc { background: var(--bg2); padding: 22px 26px; }
-    .sc-label {
-      font-family: var(--mono); font-size: 9px; font-weight: 500;
-      letter-spacing: .14em; text-transform: uppercase;
-      color: var(--green); margin-bottom: 14px;
-    }
-    .si-item {
-      font-size: 13px; color: var(--text2);
-      padding: 5px 0; border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: 8px;
-    }
+    .sc-label { font-family: var(--mono); font-size: 9px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--green); margin-bottom: 14px; }
+    .si-item { font-size: 13px; color: var(--text2); padding: 5px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
     .si-item:last-child { border: none; }
-    .si-item::before {
-      content: ''; width: 4px; height: 4px; border-radius: 50%;
-      background: var(--border2); flex-shrink: 0;
-    }
+    .si-item::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--border2); flex-shrink: 0; }
 
     /* ── EDUCATION ── */
-    .edu-item {
-      display: grid; grid-template-columns: 100px 1fr;
-      gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--border);
-      align-items: start;
-    }
+    .edu-item { display: grid; grid-template-columns: 110px 1fr; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--border); align-items: start; }
     .edu-item:first-child { border-top: 1px solid var(--border); }
-    .edu-inst {
-      font-family: var(--mono); font-size: 10px; font-weight: 500;
-      color: var(--green); padding-top: 2px; line-height: 1.4;
-    }
-    .edu-name {
-      font-family: var(--display); font-size: 15px; font-weight: 700;
-      color: var(--text); margin-bottom: 3px;
-    }
+    .edu-inst { font-family: var(--mono); font-size: 10px; font-weight: 500; color: var(--green); padding-top: 2px; line-height: 1.5; }
+    .edu-name { font-family: var(--display); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
     .edu-detail { font-size: 13px; color: var(--text2); }
 
     /* ── CONTACT ── */
-    .contact-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 48px; align-items: start;
-    }
-    .contact-h {
-      font-family: var(--display);
-      font-size: clamp(26px, 3.8vw, 40px);
-      font-weight: 700; letter-spacing: -0.03em;
-      line-height: 1.06; color: var(--text); margin-bottom: 14px;
-    }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .contact-h { font-family: var(--display); font-size: clamp(26px, 3.8vw, 40px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.06; color: var(--text); margin-bottom: 14px; }
     .contact-h em { font-style: normal; color: var(--green); }
     .contact-sub { font-size: 14px; color: var(--text2); line-height: 1.75; }
     .contact-links { display: flex; flex-direction: column; gap: 6px; }
-    .c-link {
-      display: flex; align-items: center; gap: 12px;
-      padding: 13px 16px;
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 5px; font-size: 13px; color: var(--text2);
-      transition: border-color .15s, color .15s, background .15s;
-    }
+    .c-link { display: flex; align-items: center; gap: 12px; padding: 13px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: 5px; font-size: 13px; color: var(--text2); transition: border-color .15s, color .15s, background .15s; }
     .c-link:hover { border-color: var(--green); color: var(--green); background: var(--green-dim); }
-    .c-icon {
-      width: 30px; height: 30px; border-radius: 5px;
-      background: var(--bg3); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
+    .c-icon { width: 30px; height: 30px; border-radius: 5px; background: var(--bg3); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .c-icon svg { width: 14px; height: 14px; }
 
-    /* ── FOOTER ── */
-    footer {
-      text-align: center; padding: 22px 40px;
-      font-family: var(--mono); font-size: 10px; letter-spacing: .08em;
-      color: var(--text3); border-top: 1px solid var(--border);
-    }
+    footer { text-align: center; padding: 22px 40px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--text3); border-top: 1px solid var(--border); }
 
-    /* ── REVEAL ── */
     .reveal { opacity: 0; transform: translateY(12px); transition: opacity .55s ease, transform .55s ease; }
     .reveal.in { opacity: 1; transform: none; }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 660px) {
       nav { padding: 0 16px; }
       .nav-a { display: none; }
@@ -357,9 +236,7 @@
       .contact-grid { grid-template-columns: 1fr; gap: 32px; }
       .skills-grid { grid-template-columns: 1fr; }
     }
-    @media (prefers-reduced-motion: reduce) {
-      *, .reveal { animation: none !important; transition: none !important; }
-    }
+    @media (prefers-reduced-motion: reduce) { *, .reveal { animation: none !important; transition: none !important; } }
   </style>
 </head>
 <body>
@@ -368,11 +245,16 @@
 <nav>
   <div class="nav-name">Juan Sebastian <span>Zapata Acosta</span></div>
   <div class="nav-right">
-    <a class="nav-a" href="#work">Work</a>
-    <a class="nav-a" href="#skills">Skills</a>
-    <a class="nav-a" href="#education">Education</a>
-    <a class="nav-a" href="#contact">Contact</a>
-    <a class="nav-cta" href="cv.pdf" download>Download CV</a>
+    <a class="nav-a" href="#work" data-i18n="nav.work">Work</a>
+    <a class="nav-a" href="#skills" data-i18n="nav.skills">Skills</a>
+    <a class="nav-a" href="#education" data-i18n="nav.education">Education</a>
+    <a class="nav-a" href="#contact" data-i18n="nav.contact">Contact</a>
+    <a class="nav-cta" href="cv.pdf" download data-i18n="nav.cv">Download CV</a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <div class="lang-sep"></div>
+      <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+    </div>
   </div>
 </nav>
 
@@ -381,32 +263,32 @@
   <div class="wrap">
     <div class="bio-grid">
       <div>
-        <div class="bio-tag">Microbiologist · Computational Biologist · Bogotá</div>
-        <h1>Biological data<br>into <em>scientific insight.</em></h1>
-        <p class="bio-p">
+        <div class="bio-tag" data-i18n="bio.tag">Microbiologist · Computational Biologist · Bogotá</div>
+        <h1 data-i18n="bio.h1">Biological data<br>into <em>scientific insight.</em></h1>
+        <p class="bio-p" data-i18n="bio.p1">
           I'm Juan Sebastian Zapata Acosta — microbiologist and MSc candidate in Computational Biology
           at Universidad de los Andes. I combine <strong>experimental biology and computational approaches</strong>
           to transform complex biological data into actionable scientific insights.
         </p>
-        <p class="bio-p">
+        <p class="bio-p" data-i18n="bio.p2">
           My work spans <strong>metagenomics, metabolic modeling, and microbial biotechnology</strong> —
           from sequencing raw samples to building genome-scale models that simulate microbial community behavior.
         </p>
         <div class="bio-pills">
-          <span class="pill green">Bioinformatics</span>
-          <span class="pill green">Metagenomics</span>
-          <span class="pill green">Metabolic Modeling</span>
+          <span class="pill green" data-i18n="fp.1">Bioinformatics</span>
+          <span class="pill green" data-i18n="fp.2">Metagenomics</span>
+          <span class="pill green" data-i18n="fp.3">Metabolic Modeling</span>
           <span class="pill">Python · R</span>
-          <span class="pill">Data Science</span>
-          <span class="pill">Microbial Biotechnology</span>
+          <span class="pill" data-i18n="fp.4">Data Science</span>
+          <span class="pill" data-i18n="fp.5">Microbial Biotechnology</span>
         </div>
         <div class="live-badge">
           <span class="live-dot"></span>
-          Open to opportunities in Bioinformatics &amp; Computational Biology
+          <span data-i18n="bio.live">Open to opportunities in Bioinformatics &amp; Computational Biology</span>
         </div>
         <div class="bio-actions">
-          <a class="btn-fill" href="#work">View my work</a>
-          <a class="btn-outline" href="cv.pdf" download>Download CV</a>
+          <a class="btn-fill" href="#work" data-i18n="bio.btn1">View my work</a>
+          <a class="btn-outline" href="cv.pdf" download data-i18n="bio.btn2">Download CV</a>
           <a class="btn-outline" href="https://github.com/Juansebastianzapataacostaa" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
       </div>
@@ -422,17 +304,17 @@
 <section id="about" class="reveal">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-tag">Profile</div>
-      <h2 class="sec-title">Who I am &amp; what I do</h2>
+      <div class="sec-tag" data-i18n="s.about.tag">Profile</div>
+      <h2 class="sec-title" data-i18n="s.about.title">Who I am &amp; what I do</h2>
     </div>
     <div class="about-grid">
       <div class="about-card">
-        <h3>Who I Am</h3>
-        <p>Microbiologist from Universidad de los Andes and MSc candidate in Computational Biology with expertise in bioinformatics, data science, and machine learning. Experienced in transforming complex biological data into actionable insights through statistical analysis, predictive modeling, and computational approaches.</p>
+        <h3 data-i18n="about.c1.h">Who I Am</h3>
+        <p data-i18n="about.c1.p">Microbiologist from Universidad de los Andes and MSc candidate in Computational Biology with expertise in bioinformatics, data science, and machine learning. Experienced in transforming complex biological data into actionable insights through statistical analysis, predictive modeling, and computational approaches.</p>
       </div>
       <div class="about-card">
-        <h3>What I Do</h3>
-        <p>I develop data-driven solutions for biological challenges by integrating microbiology, bioinformatics, statistical analysis and computational modeling. My interests include microbial communities, biotechnology, biological systems modeling and the application of computational tools to research and innovation.</p>
+        <h3 data-i18n="about.c2.h">What I Do</h3>
+        <p data-i18n="about.c2.p">I develop data-driven solutions for biological challenges by integrating microbiology, bioinformatics, statistical analysis and computational modeling. My interests include microbial communities, biotechnology, biological systems modeling and the application of computational tools to research and innovation.</p>
       </div>
     </div>
   </div>
@@ -442,41 +324,35 @@
 <section id="work" class="reveal">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-tag">Research</div>
-      <h2 class="sec-title">Featured projects</h2>
+      <div class="sec-tag" data-i18n="s.work.tag">Research</div>
+      <h2 class="sec-title" data-i18n="s.work.title">Featured projects</h2>
     </div>
 
-    <!-- P1: Composting -->
+    <!-- P1 -->
     <div class="proj">
-      <div class="proj-meta">Metagenomics · Metabolic modeling · Microbial ecology</div>
-      <div class="proj-name">Adaptive Microbial Consortia for Composting Optimization</div>
+      <div class="proj-meta" data-i18n="p1.meta">Metagenomics · Metabolic modeling · Microbial ecology</div>
+      <div class="proj-name" data-i18n="p1.name">Adaptive Microbial Consortia for Composting Optimization</div>
       <div class="stat-strip">
         <div class="stat-cell">
-          <div class="stat-label">Source organism</div>
-          <div class="stat-val green" style="font-size:16px;font-weight:700;">Eisenia fetida</div>
-          <div class="stat-note">Gut microbiota · vermicomposting</div>
+          <div class="stat-label" data-i18n="p1.s1l">Source organism</div>
+          <div class="stat-val green" style="font-size:15px;">Eisenia fetida</div>
+          <div class="stat-note" data-i18n="p1.s1n">Gut microbiota · vermicomposting</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-label">Approach</div>
-          <div class="stat-val" style="font-size:16px;font-weight:700;">MAG recovery</div>
-          <div class="stat-note">Metagenome-assembled genomes</div>
+          <div class="stat-label" data-i18n="p1.s2l">Approach</div>
+          <div class="stat-val" style="font-size:15px;" data-i18n="p1.s2v">MAG recovery</div>
+          <div class="stat-note" data-i18n="p1.s2n">Metagenome-assembled genomes</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-label">Modeling</div>
-          <div class="stat-val" style="font-size:16px;font-weight:700;">COMETS</div>
-          <div class="stat-note">Community metabolic simulation</div>
+          <div class="stat-label" data-i18n="p1.s3l">Modeling</div>
+          <div class="stat-val" style="font-size:15px;">COMETS</div>
+          <div class="stat-note" data-i18n="p1.s3n">Community metabolic simulation</div>
         </div>
       </div>
-
-      <!-- Pipeline visual -->
       <div class="proj-visual">
-        <div class="visual-label">Bioinformatics pipeline — composting microbiome analysis</div>
+        <div class="visual-label" data-i18n="p1.vl">Bioinformatics pipeline — composting microbiome analysis</div>
         <svg viewBox="0 0 700 48" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-          <defs>
-            <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-              <path d="M0,0 L6,3 L0,6 Z" fill="#22C55E"/>
-            </marker>
-          </defs>
+          <defs><marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#22C55E"/></marker></defs>
           <rect x="0"   y="12" width="100" height="24" rx="4" fill="#141414" stroke="#2C2C2C" stroke-width="1"/>
           <rect x="140" y="12" width="100" height="24" rx="4" fill="#141414" stroke="#2C2C2C" stroke-width="1"/>
           <rect x="280" y="12" width="110" height="24" rx="4" fill="#141414" stroke="#22C55E" stroke-width="1"/>
@@ -493,144 +369,92 @@
           <line x1="532" y1="24" x2="568" y2="24" stroke="#22C55E" stroke-width="1.2" marker-end="url(#arr)"/>
         </svg>
       </div>
-
-      <p class="proj-desc">
-        Development of microbial consortia derived from the gut microbiota of <em>Eisenia fetida</em>
-        to accelerate composting processes and improve organic waste valorization.
-        Combines <strong>shotgun metagenomics and genome-scale metabolic modeling</strong> (CarveMe + COMETS)
-        to reconstruct and simulate community metabolism under composting conditions.
-      </p>
+      <p class="proj-desc" data-i18n="p1.desc">Development of microbial consortia derived from the gut microbiota of <em>Eisenia fetida</em> to accelerate composting processes and improve organic waste valorization. Combines <strong>shotgun metagenomics and genome-scale metabolic modeling</strong> (CarveMe + COMETS) to reconstruct and simulate community metabolism under composting conditions.</p>
       <div class="proj-tools">
         <span class="tag">Metagenomics</span><span class="tag">CarveMe</span><span class="tag">COMETS</span><span class="tag">Microbial ecology</span><span class="tag">MAG recovery</span>
       </div>
     </div>
 
-    <!-- P2: Rhizosphere -->
+    <!-- P2 -->
     <div class="proj">
-      <div class="proj-meta">Shotgun metagenomics · Functional profiling · Agricultural biotechnology</div>
-      <div class="proj-name">Rhizosphere Metagenomics in Carrot Cultivation</div>
+      <div class="proj-meta" data-i18n="p2.meta">Shotgun metagenomics · Functional profiling · Agricultural biotechnology</div>
+      <div class="proj-name" data-i18n="p2.name">Rhizosphere Metagenomics in Carrot Cultivation</div>
       <div class="stat-strip">
         <div class="stat-cell">
-          <div class="stat-label">Method</div>
-          <div class="stat-val green" style="font-size:16px;font-weight:700;">Shotgun</div>
-          <div class="stat-note">Untargeted metagenomics</div>
+          <div class="stat-label" data-i18n="p2.s1l">Method</div>
+          <div class="stat-val green" data-i18n="p2.s1v">Shotgun</div>
+          <div class="stat-note" data-i18n="p2.s1n">Untargeted metagenomics</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-label">Focus</div>
-          <div class="stat-val" style="font-size:16px;font-weight:700;">C &amp; N cycling</div>
-          <div class="stat-note">Carbon &amp; nitrogen microorganisms</div>
+          <div class="stat-label" data-i18n="p2.s2l">Focus</div>
+          <div class="stat-val" data-i18n="p2.s2v">C &amp; N cycling</div>
+          <div class="stat-note" data-i18n="p2.s2n">Carbon &amp; nitrogen microorganisms</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-label">Analysis</div>
-          <div class="stat-val" style="font-size:16px;font-weight:700;">R</div>
-          <div class="stat-note">Functional profiling pipeline</div>
+          <div class="stat-label" data-i18n="p2.s3l">Analysis</div>
+          <div class="stat-val">R</div>
+          <div class="stat-note" data-i18n="p2.s3n">Functional profiling pipeline</div>
         </div>
       </div>
-
-      <!-- Visual: taxonomy pie schematic -->
-      <div class="proj-visual">
-        <div class="visual-label">Analysis workflow — rhizosphere microbiome characterization</div>
-        <svg viewBox="0 0 700 56" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-          <!-- Spine -->
-          <line x1="20" y1="28" x2="680" y2="28" stroke="#222" stroke-width="1.5"/>
-          <!-- Steps -->
-          <circle cx="80"  cy="28" r="6" fill="#22C55E"/>
-          <circle cx="240" cy="28" r="6" fill="#22C55E"/>
-          <circle cx="400" cy="28" r="6" fill="#22C55E"/>
-          <circle cx="560" cy="28" r="6" fill="#22C55E"/>
-          <circle cx="660" cy="28" r="6" fill="#22C55E" opacity=".5"/>
-          <!-- Labels top -->
-          <text x="80"  y="14" font-family="Inter,sans-serif" font-size="9" fill="#22C55E" text-anchor="middle">Sampling</text>
-          <text x="240" y="14" font-family="Inter,sans-serif" font-size="9" fill="#22C55E" text-anchor="middle">DNA Extraction</text>
-          <text x="400" y="14" font-family="Inter,sans-serif" font-size="9" fill="#22C55E" text-anchor="middle">Sequencing</text>
-          <text x="560" y="14" font-family="Inter,sans-serif" font-size="9" fill="#22C55E" text-anchor="middle">Annotation</text>
-          <text x="660" y="14" font-family="Inter,sans-serif" font-size="9" fill="#888" text-anchor="middle">Visualization</text>
-          <!-- Labels bottom -->
-          <text x="80"  y="44" font-family="JetBrains Mono,monospace" font-size="8" fill="#555" text-anchor="middle">Carrot rhizosphere</text>
-          <text x="240" y="44" font-family="JetBrains Mono,monospace" font-size="8" fill="#555" text-anchor="middle">Shotgun prep</text>
-          <text x="400" y="44" font-family="JetBrains Mono,monospace" font-size="8" fill="#555" text-anchor="middle">Paired-end reads</text>
-          <text x="560" y="44" font-family="JetBrains Mono,monospace" font-size="8" fill="#555" text-anchor="middle">Functional profiling</text>
-          <text x="660" y="44" font-family="JetBrains Mono,monospace" font-size="8" fill="#555" text-anchor="middle">R / ggplot2</text>
-        </svg>
-      </div>
-
-      <p class="proj-desc">
-        Taxonomic and functional characterization of carbon and nitrogen cycling microorganisms
-        in carrot rhizosphere soils. Uses <strong>shotgun metagenomics and functional annotation pipelines</strong>
-        to identify key microbial players in nutrient cycling — with direct applications in
-        sustainable agriculture and bioinput development.
-      </p>
+      <p class="proj-desc" data-i18n="p2.desc">Taxonomic and functional characterization of carbon and nitrogen cycling microorganisms in carrot rhizosphere soils. Uses <strong>shotgun metagenomics and functional annotation pipelines</strong> to identify key microbial players in nutrient cycling — with direct applications in sustainable agriculture and bioinput development.</p>
       <div class="proj-tools">
         <span class="tag">Shotgun metagenomics</span><span class="tag">R</span><span class="tag">Microbiome</span><span class="tag">Functional Profiling</span><span class="tag">ggplot2</span>
       </div>
     </div>
 
-    <!-- P3: E. coli Biofilms -->
+    <!-- P3 -->
     <div class="proj">
-      <div class="proj-meta">Microscopy · Microfluidics · Gene expression</div>
-      <div class="proj-name">Gene Expression Dynamics in <em style="font-style:italic;color:var(--text2);">E. coli</em> Biofilms</div>
+      <div class="proj-meta" data-i18n="p3.meta">Microscopy · Microfluidics · Gene expression</div>
+      <div class="proj-name" data-i18n="p3.name">Gene Expression Dynamics in E. coli Biofilms</div>
       <div class="stat-strip">
         <div class="stat-cell">
-          <div class="stat-label">Imaging</div>
-          <div class="stat-val green" style="font-size:14px;font-weight:700;line-height:1.2;">Light Sheet<br>Fluorescence</div>
-          <div class="stat-note">LSFM microscopy</div>
+          <div class="stat-label" data-i18n="p3.s1l">Imaging</div>
+          <div class="stat-val green" style="font-size:14px;line-height:1.2;" data-i18n="p3.s1v">Light Sheet<br>Fluorescence</div>
+          <div class="stat-note">LSFM</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-label">Platform</div>
-          <div class="stat-val" style="font-size:16px;font-weight:700;">Microfluidics</div>
-          <div class="stat-note">Controlled flow environment</div>
+          <div class="stat-label" data-i18n="p3.s2l">Platform</div>
+          <div class="stat-val" data-i18n="p3.s2v">Microfluidics</div>
+          <div class="stat-note" data-i18n="p3.s2n">Controlled flow environment</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-label">Analysis</div>
-          <div class="stat-val" style="font-size:16px;font-weight:700;">Quantitative</div>
-          <div class="stat-note">Image analysis pipeline</div>
+          <div class="stat-label" data-i18n="p3.s3l">Analysis</div>
+          <div class="stat-val" data-i18n="p3.s3v">Quantitative</div>
+          <div class="stat-note" data-i18n="p3.s3n">Image analysis pipeline</div>
         </div>
       </div>
-
-      <p class="proj-desc">
-        Investigation of stress-induced gene expression during biofilm formation in <em>E. coli</em>
-        using <strong>Light Sheet Fluorescence Microscopy and microfluidics</strong>.
-        Quantitative image analysis tracks gene expression dynamics across biofilm development stages —
-        linking transcriptional responses to spatial organization within the biofilm structure.
-      </p>
+      <p class="proj-desc" data-i18n="p3.desc">Investigation of stress-induced gene expression during biofilm formation in <em>E. coli</em> using <strong>Light Sheet Fluorescence Microscopy and microfluidics</strong>. Quantitative image analysis tracks gene expression dynamics across biofilm development stages, linking transcriptional responses to spatial organization within the biofilm structure.</p>
       <div class="proj-tools">
         <span class="tag">LSFM Microscopy</span><span class="tag">Microfluidics</span><span class="tag">Gene Expression</span><span class="tag">Image Analysis</span><span class="tag">Python</span>
       </div>
     </div>
 
-    <!-- P4: Water Quality -->
+    <!-- P4 -->
     <div class="proj">
-      <div class="proj-meta">Spatial analysis · GIS · Public health</div>
-      <div class="proj-name">Water Quality &amp; Intestinal Disease Risk in Colombia</div>
+      <div class="proj-meta" data-i18n="p4.meta">Spatial analysis · GIS · Public health</div>
+      <div class="proj-name" data-i18n="p4.name">Water Quality &amp; Intestinal Disease Risk in Colombia</div>
       <div class="stat-strip">
         <div class="stat-cell">
-          <div class="stat-label">Tool</div>
-          <div class="stat-val green" style="font-size:16px;font-weight:700;">ArcGIS</div>
-          <div class="stat-note">Spatial analysis platform</div>
+          <div class="stat-label" data-i18n="p4.s1l">Tool</div>
+          <div class="stat-val green">ArcGIS</div>
+          <div class="stat-note" data-i18n="p4.s1n">Spatial analysis platform</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-label">Scope</div>
-          <div class="stat-val" style="font-size:16px;font-weight:700;">National</div>
-          <div class="stat-note">Colombia-wide monitoring data</div>
+          <div class="stat-label" data-i18n="p4.s2l">Scope</div>
+          <div class="stat-val" data-i18n="p4.s2v">National</div>
+          <div class="stat-note" data-i18n="p4.s2n">Colombia-wide monitoring data</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-label">Domain</div>
-          <div class="stat-val" style="font-size:16px;font-weight:700;">Public health</div>
-          <div class="stat-note">Water quality indicators</div>
+          <div class="stat-label" data-i18n="p4.s3l">Domain</div>
+          <div class="stat-val" data-i18n="p4.s3v" style="font-size:16px;">Public health</div>
+          <div class="stat-note" data-i18n="p4.s3n">Water quality indicators</div>
         </div>
       </div>
-
-      <p class="proj-desc">
-        Spatial analysis of drinking water quality indicators and their relationship with public health outcomes
-        across Colombia. Uses <strong>GIS tools and national monitoring datasets</strong> to map the geographic
-        correlation between water contamination and intestinal disease incidence — providing an
-        evidence base for public health intervention prioritization.
-      </p>
+      <p class="proj-desc" data-i18n="p4.desc">Spatial analysis of drinking water quality indicators and their relationship with public health outcomes across Colombia. Uses <strong>GIS tools and national monitoring datasets</strong> to map the geographic correlation between water contamination and intestinal disease incidence — providing an evidence base for public health intervention prioritization.</p>
       <div class="proj-tools">
         <span class="tag">ArcGIS</span><span class="tag">GIS</span><span class="tag">Public Health</span><span class="tag">Spatial Analysis</span>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -638,36 +462,166 @@
 <section id="skills" class="reveal">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-tag">Technical skills</div>
-      <h2 class="sec-title">Tools &amp; methods</h2>
+      <div class="sec-tag" data-i18n="s.skills.tag">Technical skills</div>
+      <h2 class="sec-title" data-i18n="s.skills.title">Tools &amp; methods</h2>
     </div>
+
+    <!-- Tool icon row -->
+    <div class="tool-icons">
+      <!-- Python -->
+      <div class="ti"><div class="ti-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 4C13.5 4 14.2 8.4 14.2 8.4L14.2 13H24.5V14.5H9.5C9.5 14.5 4 13.8 4 24.5C4 35.2 8.7 34.8 8.7 34.8H11.4V29.9C11.4 29.9 11.2 25.2 16 25.2H26.2C26.2 25.2 30.7 25.3 30.7 20.9V9.7C30.7 9.7 31.4 4 24 4Z" fill="#3776AB"/>
+          <path d="M24 44C34.5 44 33.8 39.6 33.8 39.6L33.8 34.9H23.5V33.5H38.5C38.5 33.5 44 34.2 44 23.5C44 12.8 39.3 13.2 39.3 13.2H36.6V18.1C36.6 18.1 36.8 22.8 32 22.8H21.8C21.8 22.8 17.3 22.7 17.3 27.1V38.3C17.3 38.3 16.6 44 24 44Z" fill="#FFD43B"/>
+          <circle cx="19" cy="8.5" r="1.5" fill="#fff"/><circle cx="29" cy="39.5" r="1.5" fill="#fff"/>
+        </svg>
+      </div><span class="ti-label">Python</span></div>
+
+      <!-- R -->
+      <div class="ti"><div class="ti-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="40" height="40" rx="6" fill="#1A6794"/>
+          <text x="24" y="34" font-family="Arial,sans-serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle">R</text>
+        </svg>
+      </div><span class="ti-label">R</span></div>
+
+      <!-- Git -->
+      <div class="ti"><div class="ti-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <path d="M43.6 21.9L26.1 4.4a3.3 3.3 0 00-4.7 0l-3.3 3.3 4.2 4.2a3.9 3.9 0 015 5l4.1 4.1v.1a3.9 3.9 0 11-1.4 1.4l-.1-.1-3.8-3.8v10.5a3.9 3.9 0 11-2 0V18.4a3.9 3.9 0 01-2.1-5.1l-4.2-4.2L4.4 22.6a3.3 3.3 0 000 4.7l17.5 17.5a3.3 3.3 0 004.7 0l17-17a3.3 3.3 0 000-4.9z" fill="#F05032"/>
+        </svg>
+      </div><span class="ti-label">Git</span></div>
+
+      <!-- Bash / Linux -->
+      <div class="ti"><div class="ti-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="40" height="40" rx="5" fill="#1A1A1A" stroke="#333" stroke-width="1"/>
+          <text x="10" y="22" font-family="JetBrains Mono,monospace" font-size="10" fill="#22C55E">$_</text>
+          <text x="10" y="34" font-family="JetBrains Mono,monospace" font-size="8" fill="#555">bash</text>
+        </svg>
+      </div><span class="ti-label">Bash</span></div>
+
+      <!-- ArcGIS -->
+      <div class="ti"><div class="ti-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="18" fill="#007AC2"/>
+          <circle cx="24" cy="24" r="10" fill="none" stroke="white" stroke-width="1.5"/>
+          <line x1="24" y1="6" x2="24" y2="42" stroke="white" stroke-width="1.2"/>
+          <line x1="6" y1="24" x2="42" y2="24" stroke="white" stroke-width="1.2"/>
+          <path d="M12 14 Q24 8 36 14" fill="none" stroke="white" stroke-width="1.2"/>
+          <path d="M12 34 Q24 40 36 34" fill="none" stroke="white" stroke-width="1.2"/>
+        </svg>
+      </div><span class="ti-label">ArcGIS</span></div>
+
+      <!-- COMETS -->
+      <div class="ti"><div class="ti-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="8" fill="#22C55E" opacity=".9"/>
+          <circle cx="14" cy="18" r="5" fill="#22C55E" opacity=".5"/>
+          <circle cx="34" cy="18" r="5" fill="#22C55E" opacity=".5"/>
+          <circle cx="24" cy="36" r="5" fill="#22C55E" opacity=".5"/>
+          <line x1="20" y1="22" x2="16" y2="21" stroke="#22C55E" stroke-width="1.2" opacity=".6"/>
+          <line x1="28" y1="22" x2="32" y2="21" stroke="#22C55E" stroke-width="1.2" opacity=".6"/>
+          <line x1="24" y1="32" x2="24" y2="30" stroke="#22C55E" stroke-width="1.2" opacity=".6"/>
+        </svg>
+      </div><span class="ti-label">COMETS</span></div>
+
+      <!-- CarveMe -->
+      <div class="ti"><div class="ti-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="14" height="14" rx="2" fill="#22C55E" opacity=".8"/>
+          <rect x="26" y="8" width="14" height="14" rx="2" fill="#22C55E" opacity=".5"/>
+          <rect x="8" y="26" width="14" height="14" rx="2" fill="#22C55E" opacity=".5"/>
+          <rect x="26" y="26" width="14" height="14" rx="2" fill="#22C55E" opacity=".3"/>
+          <line x1="22" y1="15" x2="26" y2="15" stroke="#22C55E" stroke-width="1.5"/>
+          <line x1="15" y1="22" x2="15" y2="26" stroke="#22C55E" stroke-width="1.5"/>
+          <line x1="33" y1="22" x2="33" y2="26" stroke="#22C55E" stroke-width="1.5"/>
+          <line x1="22" y1="33" x2="26" y2="33" stroke="#22C55E" stroke-width="1.5"/>
+        </svg>
+      </div><span class="ti-label">CarveMe</span></div>
+
+      <!-- ggplot2 -->
+      <div class="ti"><div class="ti-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="6" width="36" height="36" rx="3" fill="#1A1A1A" stroke="#333" stroke-width="1"/>
+          <circle cx="14" cy="34" r="3" fill="#3776AB"/>
+          <circle cx="20" cy="26" r="3" fill="#F05032"/>
+          <circle cx="28" cy="20" r="3" fill="#22C55E"/>
+          <circle cx="36" cy="14" r="3" fill="#FFD43B"/>
+          <line x1="8" y1="40" x2="42" y2="40" stroke="#555" stroke-width="1"/>
+          <line x1="8" y1="8" x2="8" y2="40" stroke="#555" stroke-width="1"/>
+        </svg>
+      </div><span class="ti-label">ggplot2</span></div>
+
+      <!-- pandas -->
+      <div class="ti"><div class="ti-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="6" width="9" height="36" rx="2" fill="#130754"/>
+          <rect x="31" y="6" width="9" height="36" rx="2" fill="#E70488"/>
+          <rect x="17" y="18" width="14" height="12" rx="1" fill="#130754" opacity=".35"/>
+        </svg>
+      </div><span class="ti-label">pandas</span></div>
+
+      <!-- Jupyter -->
+      <div class="ti"><div class="ti-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="10" fill="none" stroke="#F37726" stroke-width="3"/>
+          <circle cx="24" cy="10" r="4" fill="#F37726"/>
+          <circle cx="14" cy="36" r="4" fill="#9E9E9E"/>
+          <circle cx="34" cy="36" r="4" fill="#5C5C5C"/>
+        </svg>
+      </div><span class="ti-label">Jupyter</span></div>
+
+      <!-- matplotlib -->
+      <div class="ti"><div class="ti-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="16" fill="none" stroke="#11557C" stroke-width="2"/>
+          <path d="M24 8 L24 24 L36 32" fill="none" stroke="#11557C" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="24" cy="24" r="3" fill="#11557C"/>
+        </svg>
+      </div><span class="ti-label">matplotlib</span></div>
+
+      <!-- Linux -->
+      <div class="ti"><div class="ti-box">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="24" cy="18" rx="8" ry="11" fill="#F5C211"/>
+          <circle cx="20" cy="16" r="2" fill="#333"/>
+          <circle cx="28" cy="16" r="2" fill="#333"/>
+          <path d="M20 22 Q24 26 28 22" fill="none" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M16 28 Q10 38 14 42 Q18 44 22 40 L26 40 Q30 44 34 42 Q38 38 32 28 L24 26 Z" fill="#F5C211"/>
+          <line x1="16" y1="30" x2="10" y2="34" stroke="#F5C211" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="32" y1="30" x2="38" y2="34" stroke="#F5C211" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div><span class="ti-label">Linux</span></div>
+    </div>
+
     <div class="skills-grid">
       <div class="sc">
-        <div class="sc-label">Bioinformatics</div>
-        <div class="si-item">Metagenomics · shotgun &amp; amplicon</div>
-        <div class="si-item">Genome assembly &amp; MAG recovery</div>
-        <div class="si-item">Functional annotation pipelines</div>
-        <div class="si-item">Microbiome analysis</div>
+        <div class="sc-label" data-i18n="st.l1">Bioinformatics</div>
+        <div class="si-item" data-i18n="st.b1">Metagenomics · shotgun &amp; amplicon</div>
+        <div class="si-item" data-i18n="st.b2">Genome assembly &amp; MAG recovery</div>
+        <div class="si-item" data-i18n="st.b3">Functional annotation pipelines</div>
+        <div class="si-item" data-i18n="st.b4">Microbiome analysis</div>
       </div>
       <div class="sc">
-        <div class="sc-label">Computational Biology</div>
-        <div class="si-item">Genome-scale metabolic models (GEMs)</div>
+        <div class="sc-label" data-i18n="st.l2">Computational Biology</div>
+        <div class="si-item" data-i18n="st.c1">Genome-scale metabolic models (GEMs)</div>
         <div class="si-item">CarveMe · COMETS · COBRApy</div>
-        <div class="si-item">Microbial community simulations</div>
-        <div class="si-item">Systems biology approaches</div>
+        <div class="si-item" data-i18n="st.c3">Microbial community simulations</div>
+        <div class="si-item" data-i18n="st.c4">Systems biology approaches</div>
       </div>
       <div class="sc">
-        <div class="sc-label">Data Science &amp; Statistics</div>
+        <div class="sc-label" data-i18n="st.l3">Data Science &amp; Statistics</div>
         <div class="si-item">Python · R</div>
-        <div class="si-item">Statistical analysis &amp; multivariate methods</div>
-        <div class="si-item">Data visualization (ggplot2, matplotlib)</div>
-        <div class="si-item">Machine learning fundamentals</div>
+        <div class="si-item" data-i18n="st.d2">Statistical analysis &amp; multivariate methods</div>
+        <div class="si-item">ggplot2 · matplotlib · seaborn</div>
+        <div class="si-item" data-i18n="st.d4">Machine learning fundamentals</div>
       </div>
       <div class="sc">
-        <div class="sc-label">Microbial Biotechnology</div>
-        <div class="si-item">Microbial cultivation &amp; fermentation</div>
-        <div class="si-item">Bioinput development</div>
-        <div class="si-item">Biological control agents</div>
+        <div class="sc-label" data-i18n="st.l4">Microbial Biotechnology</div>
+        <div class="si-item" data-i18n="st.m1">Microbial cultivation &amp; fermentation</div>
+        <div class="si-item" data-i18n="st.m2">Bioinput development</div>
+        <div class="si-item" data-i18n="st.m3">Biological control agents</div>
         <div class="si-item">ArcGIS · Spatial analysis</div>
       </div>
     </div>
@@ -678,42 +632,38 @@
 <section id="education" class="reveal">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-tag">Education</div>
-      <h2 class="sec-title">Academic background</h2>
+      <div class="sec-tag" data-i18n="s.edu.tag">Education</div>
+      <h2 class="sec-title" data-i18n="s.edu.title">Academic background</h2>
     </div>
-
-    <!-- Timeline visual -->
     <div class="proj-visual" style="margin-bottom:24px;">
-      <div class="visual-label">Academic timeline — Universidad de los Andes</div>
+      <div class="visual-label" data-i18n="edu.vl">Academic timeline — Universidad de los Andes</div>
       <svg viewBox="0 0 700 56" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
         <line x1="16" y1="28" x2="684" y2="28" stroke="#222" stroke-width="1.5"/>
-        <!-- BSc range -->
         <rect x="80" y="24" width="300" height="8" rx="4" fill="#22C55E" opacity=".15"/>
         <circle cx="80"  cy="28" r="5" fill="#22C55E"/>
         <circle cx="380" cy="28" r="5" fill="#22C55E" opacity=".5"/>
         <circle cx="550" cy="28" r="5" fill="#22C55E"/>
-        <text x="80"  y="14" font-family="JetBrains Mono,monospace" font-size="9" fill="#22C55E" text-anchor="middle">BSc start</text>
-        <text x="380" y="14" font-family="JetBrains Mono,monospace" font-size="9" fill="#555"    text-anchor="middle">BSc complete</text>
-        <text x="550" y="14" font-family="JetBrains Mono,monospace" font-size="9" fill="#22C55E" text-anchor="middle">MSc start</text>
-        <text x="80"  y="44" font-family="Inter,sans-serif" font-size="9" fill="#888" text-anchor="middle">Biology</text>
-        <text x="380" y="44" font-family="Inter,sans-serif" font-size="9" fill="#555" text-anchor="middle">Microbiology focus</text>
-        <text x="550" y="44" font-family="Inter,sans-serif" font-size="9" fill="#888" text-anchor="middle">Computational Biology</text>
+        <text x="80"  y="14" font-family="JetBrains Mono,monospace" font-size="9" fill="#22C55E" text-anchor="middle" data-i18n="tl.1">BSc start</text>
+        <text x="380" y="14" font-family="JetBrains Mono,monospace" font-size="9" fill="#555"    text-anchor="middle" data-i18n="tl.2">BSc complete</text>
+        <text x="550" y="14" font-family="JetBrains Mono,monospace" font-size="9" fill="#22C55E" text-anchor="middle" data-i18n="tl.3">MSc start</text>
+        <text x="80"  y="44" font-family="Inter,sans-serif" font-size="9" fill="#888" text-anchor="middle" data-i18n="tl.4">Biology</text>
+        <text x="380" y="44" font-family="Inter,sans-serif" font-size="9" fill="#555" text-anchor="middle" data-i18n="tl.5">Microbiology focus</text>
+        <text x="550" y="44" font-family="Inter,sans-serif" font-size="9" fill="#888" text-anchor="middle" data-i18n="tl.6">Computational Biology</text>
       </svg>
     </div>
-
     <div>
       <div class="edu-item">
-        <div class="edu-inst">U. de los Andes · In progress</div>
+        <div class="edu-inst" data-i18n="e1.inst">U. de los Andes · In progress</div>
         <div>
-          <div class="edu-name">MSc in Computational Biology</div>
-          <div class="edu-detail">Bioinformatics, systems biology, metagenomics, machine learning and data analysis.</div>
+          <div class="edu-name" data-i18n="e1.name">MSc in Computational Biology</div>
+          <div class="edu-detail" data-i18n="e1.detail">Bioinformatics, systems biology, metagenomics, machine learning and data analysis.</div>
         </div>
       </div>
       <div class="edu-item">
         <div class="edu-inst">U. de los Andes</div>
         <div>
-          <div class="edu-name">BSc in Biology</div>
-          <div class="edu-detail">Microbiology, molecular biology, ecology, biostatistics and scientific research.</div>
+          <div class="edu-name" data-i18n="e2.name">BSc in Biology</div>
+          <div class="edu-detail" data-i18n="e2.detail">Microbiology, molecular biology, ecology, biostatistics and scientific research.</div>
         </div>
       </div>
     </div>
@@ -725,36 +675,21 @@
   <div class="wrap">
     <div class="contact-grid">
       <div>
-        <div class="sec-tag">Contact</div>
-        <h2 class="contact-h">Let's talk<br>about <em>biology.</em></h2>
-        <p class="contact-sub">
-          Open to opportunities in Bioinformatics, Computational Biology,
-          Biotechnology, Data Science, and Life Sciences Research.
-        </p>
+        <div class="sec-tag" data-i18n="s.contact.tag">Contact</div>
+        <h2 class="contact-h" data-i18n="contact.h">Let's talk<br>about <em>biology.</em></h2>
+        <p class="contact-sub" data-i18n="contact.sub">Open to opportunities in Bioinformatics, Computational Biology, Biotechnology, Data Science, and Life Sciences Research.</p>
       </div>
       <div class="contact-links">
         <a class="c-link" href="mailto:10.sebastian.zapa@email.com">
-          <div class="c-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 4l10 9 10-9"/>
-            </svg>
-          </div>
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 4l10 9 10-9"/></svg></div>
           10.sebastian.zapa@email.com
         </a>
         <a class="c-link" href="https://linkedin.com/in/juan-sebastian-zapata-acosta-789bb6224" target="_blank" rel="noopener">
-          <div class="c-icon">
-            <svg viewBox="0 0 24 24" fill="#22C55E" xmlns="http://www.w3.org/2000/svg">
-              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/>
-            </svg>
-          </div>
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="#22C55E" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
           linkedin.com/in/juan-sebastian-zapata-acosta
         </a>
         <a class="c-link" href="https://github.com/Juansebastianzapataacostaa" target="_blank" rel="noopener">
-          <div class="c-icon">
-            <svg viewBox="0 0 24 24" fill="#888" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-            </svg>
-          </div>
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="#888" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></div>
           github.com/Juansebastianzapataacostaa
         </a>
       </div>
@@ -762,13 +697,157 @@
   </div>
 </section>
 
-<footer>© 2026 Juan Sebastian Zapata Acosta — Microbiologist · Computational Biologist · Bogotá, Colombia</footer>
+<footer><span data-i18n="footer">© 2026 Juan Sebastian Zapata Acosta — Microbiologist · Computational Biologist · Bogotá, Colombia</span></footer>
 
 <script>
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-}, { threshold: .06 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+const T = {
+  en: {
+    'nav.work':'Work','nav.skills':'Skills','nav.education':'Education','nav.contact':'Contact','nav.cv':'Download CV',
+    'bio.tag':'Microbiologist · Computational Biologist · Bogotá',
+    'bio.h1':'Biological data<br>into <em>scientific insight.</em>',
+    'bio.p1':"I'm Juan Sebastian Zapata Acosta — microbiologist and MSc candidate in Computational Biology at Universidad de los Andes. I combine <strong>experimental biology and computational approaches</strong> to transform complex biological data into actionable scientific insights.",
+    'bio.p2':'My work spans <strong>metagenomics, metabolic modeling, and microbial biotechnology</strong> — from sequencing raw samples to building genome-scale models that simulate microbial community behavior.',
+    'fp.1':'Bioinformatics','fp.2':'Metagenomics','fp.3':'Metabolic Modeling','fp.4':'Data Science','fp.5':'Microbial Biotechnology',
+    'bio.live':'Open to opportunities in Bioinformatics &amp; Computational Biology',
+    'bio.btn1':'View my work','bio.btn2':'Download CV',
+    's.about.tag':'Profile','s.about.title':'Who I am &amp; what I do',
+    'about.c1.h':'Who I Am',
+    'about.c1.p':'Microbiologist from Universidad de los Andes and MSc candidate in Computational Biology with expertise in bioinformatics, data science, and machine learning. Experienced in transforming complex biological data into actionable insights through statistical analysis, predictive modeling, and computational approaches.',
+    'about.c2.h':'What I Do',
+    'about.c2.p':'I develop data-driven solutions for biological challenges by integrating microbiology, bioinformatics, statistical analysis and computational modeling. My interests include microbial communities, biotechnology, biological systems modeling and the application of computational tools to research and innovation.',
+    's.work.tag':'Research','s.work.title':'Featured projects',
+    'p1.meta':'Metagenomics · Metabolic modeling · Microbial ecology',
+    'p1.name':'Adaptive Microbial Consortia for Composting Optimization',
+    'p1.s1l':'Source organism','p1.s1n':'Gut microbiota · vermicomposting',
+    'p1.s2l':'Approach','p1.s2v':'MAG recovery','p1.s2n':'Metagenome-assembled genomes',
+    'p1.s3l':'Modeling','p1.s3n':'Community metabolic simulation',
+    'p1.vl':'Bioinformatics pipeline — composting microbiome analysis',
+    'p1.desc':'Development of microbial consortia derived from the gut microbiota of <em>Eisenia fetida</em> to accelerate composting processes and improve organic waste valorization. Combines <strong>shotgun metagenomics and genome-scale metabolic modeling</strong> (CarveMe + COMETS) to reconstruct and simulate community metabolism under composting conditions.',
+    'p2.meta':'Shotgun metagenomics · Functional profiling · Agricultural biotechnology',
+    'p2.name':'Rhizosphere Metagenomics in Carrot Cultivation',
+    'p2.s1l':'Method','p2.s1v':'Shotgun','p2.s1n':'Untargeted metagenomics',
+    'p2.s2l':'Focus','p2.s2v':'C &amp; N cycling','p2.s2n':'Carbon &amp; nitrogen microorganisms',
+    'p2.s3l':'Analysis','p2.s3n':'Functional profiling pipeline',
+    'p2.desc':'Taxonomic and functional characterization of carbon and nitrogen cycling microorganisms in carrot rhizosphere soils. Uses <strong>shotgun metagenomics and functional annotation pipelines</strong> to identify key microbial players in nutrient cycling — with direct applications in sustainable agriculture and bioinput development.',
+    'p3.meta':'Microscopy · Microfluidics · Gene expression',
+    'p3.name':'Gene Expression Dynamics in E. coli Biofilms',
+    'p3.s1l':'Imaging','p3.s1v':'Light Sheet<br>Fluorescence',
+    'p3.s2l':'Platform','p3.s2v':'Microfluidics','p3.s2n':'Controlled flow environment',
+    'p3.s3l':'Analysis','p3.s3v':'Quantitative','p3.s3n':'Image analysis pipeline',
+    'p3.desc':'Investigation of stress-induced gene expression during biofilm formation in <em>E. coli</em> using <strong>Light Sheet Fluorescence Microscopy and microfluidics</strong>. Quantitative image analysis tracks gene expression dynamics across biofilm development stages, linking transcriptional responses to spatial organization within the biofilm structure.',
+    'p4.meta':'Spatial analysis · GIS · Public health',
+    'p4.name':'Water Quality &amp; Intestinal Disease Risk in Colombia',
+    'p4.s1l':'Tool','p4.s1n':'Spatial analysis platform',
+    'p4.s2l':'Scope','p4.s2v':'National','p4.s2n':'Colombia-wide monitoring data',
+    'p4.s3l':'Domain','p4.s3v':'Public health','p4.s3n':'Water quality indicators',
+    'p4.desc':'Spatial analysis of drinking water quality indicators and their relationship with public health outcomes across Colombia. Uses <strong>GIS tools and national monitoring datasets</strong> to map the geographic correlation between water contamination and intestinal disease incidence — providing an evidence base for public health intervention prioritization.',
+    's.skills.tag':'Technical skills','s.skills.title':'Tools &amp; methods',
+    'st.l1':'Bioinformatics','st.l2':'Computational Biology','st.l3':'Data Science &amp; Statistics','st.l4':'Microbial Biotechnology',
+    'st.b1':'Metagenomics · shotgun &amp; amplicon','st.b2':'Genome assembly &amp; MAG recovery','st.b3':'Functional annotation pipelines','st.b4':'Microbiome analysis',
+    'st.c1':'Genome-scale metabolic models (GEMs)','st.c3':'Microbial community simulations','st.c4':'Systems biology approaches',
+    'st.d2':'Statistical analysis &amp; multivariate methods','st.d4':'Machine learning fundamentals',
+    'st.m1':'Microbial cultivation &amp; fermentation','st.m2':'Bioinput development','st.m3':'Biological control agents',
+    's.edu.tag':'Education','s.edu.title':'Academic background',
+    'edu.vl':'Academic timeline — Universidad de los Andes',
+    'tl.1':'BSc start','tl.2':'BSc complete','tl.3':'MSc start',
+    'tl.4':'Biology','tl.5':'Microbiology focus','tl.6':'Computational Biology',
+    'e1.inst':'U. de los Andes · In progress',
+    'e1.name':'MSc in Computational Biology',
+    'e1.detail':'Bioinformatics, systems biology, metagenomics, machine learning and data analysis.',
+    'e2.name':'BSc in Biology',
+    'e2.detail':'Microbiology, molecular biology, ecology, biostatistics and scientific research.',
+    's.contact.tag':'Contact',
+    'contact.h':"Let's talk<br>about <em>biology.</em>",
+    'contact.sub':'Open to opportunities in Bioinformatics, Computational Biology, Biotechnology, Data Science, and Life Sciences Research.',
+    'footer':'© 2026 Juan Sebastian Zapata Acosta — Microbiologist · Computational Biologist · Bogotá, Colombia',
+  },
+  es: {
+    'nav.work':'Proyectos','nav.skills':'Habilidades','nav.education':'Educación','nav.contact':'Contacto','nav.cv':'Descargar CV',
+    'bio.tag':'Microbiólogo · Biólogo Computacional · Bogotá',
+    'bio.h1':'Datos biológicos<br>en <em>conocimiento científico.</em>',
+    'bio.p1':'Soy Juan Sebastian Zapata Acosta — microbiólogo y candidato a MSc en Biología Computacional en la Universidad de los Andes. Combino <strong>biología experimental y enfoques computacionales</strong> para transformar datos biológicos complejos en conocimiento científico accionable.',
+    'bio.p2':'Mi trabajo abarca <strong>metagenómica, modelado metabólico y biotecnología microbiana</strong> — desde la secuenciación de muestras crudas hasta la construcción de modelos a escala genómica que simulan el comportamiento de comunidades microbianas.',
+    'fp.1':'Bioinformática','fp.2':'Metagenómica','fp.3':'Modelado Metabólico','fp.4':'Ciencia de Datos','fp.5':'Biotecnología Microbiana',
+    'bio.live':'Abierto a oportunidades en Bioinformática y Biología Computacional',
+    'bio.btn1':'Ver mis proyectos','bio.btn2':'Descargar CV',
+    's.about.tag':'Perfil','s.about.title':'Quién soy y qué hago',
+    'about.c1.h':'Quién Soy',
+    'about.c1.p':'Microbiólogo de la Universidad de los Andes y candidato a MSc en Biología Computacional, con experiencia en bioinformática, ciencia de datos y aprendizaje automático. Con práctica en transformar datos biológicos complejos en conocimiento accionable mediante análisis estadístico, modelado predictivo y enfoques computacionales.',
+    'about.c2.h':'Qué Hago',
+    'about.c2.p':'Desarrollo soluciones basadas en datos para retos biológicos integrando microbiología, bioinformática, análisis estadístico y modelado computacional. Mis intereses incluyen comunidades microbianas, biotecnología, modelado de sistemas biológicos y la aplicación de herramientas computacionales a la investigación e innovación.',
+    's.work.tag':'Investigación','s.work.title':'Proyectos destacados',
+    'p1.meta':'Metagenómica · Modelado metabólico · Ecología microbiana',
+    'p1.name':'Consorcios Microbianos Adaptativos para Optimización del Compostaje',
+    'p1.s1l':'Organismo fuente','p1.s1n':'Microbiota intestinal · vermicompostaje',
+    'p1.s2l':'Enfoque','p1.s2v':'Recuperación MAG','p1.s2n':'Genomas ensamblados de metagenoma',
+    'p1.s3l':'Modelado','p1.s3n':'Simulación metabólica de comunidades',
+    'p1.vl':'Pipeline bioinformático — análisis del microbioma en compostaje',
+    'p1.desc':'Desarrollo de consorcios microbianos derivados de la microbiota intestinal de <em>Eisenia fetida</em> para acelerar procesos de compostaje y mejorar la valorización de residuos orgánicos. Combina <strong>metagenómica shotgun y modelado metabólico a escala genómica</strong> (CarveMe + COMETS) para reconstruir y simular el metabolismo de la comunidad en condiciones de compostaje.',
+    'p2.meta':'Metagenómica shotgun · Perfilado funcional · Biotecnología agrícola',
+    'p2.name':'Metagenómica de Rizosfera en Cultivo de Zanahoria',
+    'p2.s1l':'Método','p2.s1v':'Shotgun','p2.s1n':'Metagenómica sin objetivo específico',
+    'p2.s2l':'Enfoque','p2.s2v':'Ciclos C y N','p2.s2n':'Microorganismos de carbono y nitrógeno',
+    'p2.s3l':'Análisis','p2.s3n':'Pipeline de perfilado funcional',
+    'p2.desc':'Caracterización taxonómica y funcional de microorganismos del ciclo del carbono y nitrógeno en suelos de rizosfera de zanahoria. Usa <strong>metagenómica shotgun y pipelines de anotación funcional</strong> para identificar microorganismos clave en el ciclo de nutrientes — con aplicaciones directas en agricultura sostenible y desarrollo de bioinsumos.',
+    'p3.meta':'Microscopía · Microfluídica · Expresión génica',
+    'p3.name':'Dinámica de Expresión Génica en Biopelículas de E. coli',
+    'p3.s1l':'Imagenología','p3.s1v':'Microscopía de<br>Lámina de Luz',
+    'p3.s2l':'Plataforma','p3.s2v':'Microfluídica','p3.s2n':'Entorno de flujo controlado',
+    'p3.s3l':'Análisis','p3.s3v':'Cuantitativo','p3.s3n':'Pipeline de análisis de imágenes',
+    'p3.desc':'Investigación de la expresión génica inducida por estrés durante la formación de biopelículas en <em>E. coli</em> mediante <strong>Microscopía de Fluorescencia de Lámina de Luz y microfluídica</strong>. El análisis cuantitativo de imágenes rastrea la dinámica de expresión génica a lo largo del desarrollo de la biopelícula, vinculando respuestas transcripcionales con la organización espacial dentro de la estructura.',
+    'p4.meta':'Análisis espacial · SIG · Salud pública',
+    'p4.name':'Calidad del Agua y Riesgo de Enfermedad Intestinal en Colombia',
+    'p4.s1l':'Herramienta','p4.s1n':'Plataforma de análisis espacial',
+    'p4.s2l':'Alcance','p4.s2v':'Nacional','p4.s2n':'Datos de monitoreo a nivel Colombia',
+    'p4.s3l':'Dominio','p4.s3v':'Salud pública','p4.s3n':'Indicadores de calidad del agua',
+    'p4.desc':'Análisis espacial de indicadores de calidad del agua potable y su relación con resultados de salud pública en Colombia. Usa <strong>herramientas SIG y conjuntos de datos de monitoreo nacional</strong> para mapear la correlación geográfica entre contaminación del agua e incidencia de enfermedades intestinales — proporcionando una base de evidencia para la priorización de intervenciones de salud pública.',
+    's.skills.tag':'Habilidades técnicas','s.skills.title':'Herramientas y métodos',
+    'st.l1':'Bioinformática','st.l2':'Biología Computacional','st.l3':'Ciencia de Datos y Estadística','st.l4':'Biotecnología Microbiana',
+    'st.b1':'Metagenómica · shotgun y amplicón','st.b2':'Ensamblaje de genomas y recuperación MAG','st.b3':'Pipelines de anotación funcional','st.b4':'Análisis de microbioma',
+    'st.c1':'Modelos metabólicos a escala genómica (GEMs)','st.c3':'Simulaciones de comunidades microbianas','st.c4':'Enfoques de biología de sistemas',
+    'st.d2':'Análisis estadístico y métodos multivariados','st.d4':'Fundamentos de aprendizaje automático',
+    'st.m1':'Cultivo microbiano y fermentación','st.m2':'Desarrollo de bioinsumos','st.m3':'Agentes de control biológico',
+    's.edu.tag':'Educación','s.edu.title':'Formación académica',
+    'edu.vl':'Línea de tiempo académica — Universidad de los Andes',
+    'tl.1':'Inicio pregrado','tl.2':'Grado pregrado','tl.3':'Inicio maestría',
+    'tl.4':'Biología','tl.5':'Énfasis microbiología','tl.6':'Biología Computacional',
+    'e1.inst':'U. de los Andes · En curso',
+    'e1.name':'Maestría en Biología Computacional',
+    'e1.detail':'Bioinformática, biología de sistemas, metagenómica, aprendizaje automático y análisis de datos.',
+    'e2.name':'Pregrado en Biología',
+    'e2.detail':'Microbiología, biología molecular, ecología, bioestadística e investigación científica.',
+    's.contact.tag':'Contacto',
+    'contact.h':'Hablemos<br>de <em>biología.</em>',
+    'contact.sub':'Abierto a oportunidades en Bioinformática, Biología Computacional, Biotecnología, Ciencia de Datos e Investigación en Ciencias de la Vida.',
+    'footer':'© 2026 Juan Sebastian Zapata Acosta — Microbiólogo · Biólogo Computacional · Bogotá, Colombia',
+  }
+};
+
+let lang='en', cache=[];
+function buildCache(){
+  cache=[];
+  document.querySelectorAll('[data-i18n]').forEach(el=>cache.push({el,key:el.getAttribute('data-i18n')}));
+}
+function applyLang(l){
+  const t=T[l];
+  cache.forEach(({el,key})=>{ if(t[key]!==undefined) el.innerHTML=t[key]; });
+  document.documentElement.lang=l;
+  document.title=l==='es'
+    ?'Juan Sebastian Zapata Acosta — Microbiólogo y Biólogo Computacional'
+    :'Juan Sebastian Zapata Acosta — Microbiologist & Computational Biologist';
+}
+function setLang(l){
+  if(l===lang) return; lang=l;
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+  document.getElementById('btn-es').classList.toggle('active',l==='es');
+  document.body.classList.add('sw');
+  setTimeout(()=>{ applyLang(l); document.body.classList.remove('sw'); },120);
+}
+document.addEventListener('DOMContentLoaded',buildCache);
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+},{threshold:.06});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
