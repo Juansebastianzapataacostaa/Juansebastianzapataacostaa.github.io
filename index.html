@@ -249,7 +249,7 @@
     <a class="nav-a" href="#skills" data-i18n="nav.skills">Skills</a>
     <a class="nav-a" href="#education" data-i18n="nav.education">Education</a>
     <a class="nav-a" href="#contact" data-i18n="nav.contact">Contact</a>
-    <a class="nav-cta" href="CV/CV_JuanSebastianZapataAcosta_EN.pdf" download data-i18n="nav.cv">Download CV</a>
+    <a class="nav-cta cv-link" href="CV/CV_JuanSebastianZapataAcosta_EN.pdf" download data-i18n="nav.cv">Download CV</a>
     <div class="lang-toggle">
       <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
       <div class="lang-sep"></div>
@@ -288,7 +288,7 @@
         </div>
         <div class="bio-actions">
           <a class="btn-fill" href="#work" data-i18n="bio.btn1">View my work</a>
-          <a class="btn-outline" href="CV/CV_JuanSebastianZapataAcosta_EN.pdf" download data-i18n="bio.btn2">Download CV</a>
+          <a class="btn-outline cv-link" href="CV/CV_JuanSebastianZapataAcosta_EN.pdf" download data-i18n="bio.btn2">Download CV</a>
           <a class="btn-outline" href="https://github.com/Juansebastianzapataacostaa" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
       </div>
@@ -798,6 +798,9 @@ function setLang(l){
   if(l===lang) return; lang=l;
   document.getElementById('btn-en').classList.toggle('active',l==='en');
   document.getElementById('btn-es').classList.toggle('active',l==='es');
+  const cvEN = 'CV/CV_JuanSebastianZapataAcosta_EN.pdf';
+  const cvES = 'CV/CV_JuanSebastianZapataAcosta_ES.pdf';
+  document.querySelectorAll('.cv-link').forEach(a => a.href = l==='es' ? cvES : cvEN);
   document.body.classList.add('sw');
   setTimeout(()=>{ applyLang(l); document.body.classList.remove('sw'); },120);
 }
