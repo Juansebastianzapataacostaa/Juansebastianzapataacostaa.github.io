@@ -431,28 +431,28 @@
 
     <!-- P4 -->
     <div class="proj">
-      <div class="proj-meta" data-i18n="p4.meta">Protein modeling · UCSF Chimera · Structural bioinformatics</div>
-      <div class="proj-name" data-i18n="p4.name">Protein Structure Modeling &amp; Structural Bioinformatics Analysis</div>
+      <div class="proj-meta" data-i18n="p4.meta">Structural bioinformatics · UCSF Chimera · Enzyme active site analysis</div>
+      <div class="proj-name" data-i18n="p4.name">Structural Analysis of Acetylcholinesterase via Molecular Visualization</div>
       <div class="stat-strip">
         <div class="stat-cell">
-          <div class="stat-label" data-i18n="p4.s1l">Tool</div>
-          <div class="stat-val green">UCSF Chimera &amp; AlphaFold</div>
-          <div class="stat-note" data-i18n="p4.s1n">Protein Structure Plataform</div>
-        </div>
+          <div class="stat-label">Enzyme</div>
+          <div class="stat-val green" style="font-size:13px;">AChE · Drosophila</div>
+          <div class="stat-note">Acetylcholinesterase · PDB: 1QO9 & 1QON</div>
+    </div>
         <div class="stat-cell">
-          <div class="stat-label" data-i18n="p4.s2l">Scope</div>
-          <div class="stat-val" data-i18n="p4.s2v">Protein Structure Prediction</div>
-          <div class="stat-note" data-i18n="p4.s2n">Design estructural changes in the structure</div>
-        </div>
+          <div class="stat-label">Tool</div>
+          <div class="stat-val" style="font-size:14px;">UCSF Chimera</div>
+          <div class="stat-note">X-ray crystallography structures</div>
+      </div>
         <div class="stat-cell">
-          <div class="stat-label" data-i18n="p4.s3l">Domain</div>
-          <div class="stat-val" data-i18n="p4.s3v" style="font-size:16px;">Structural Bioinformatics</div>
-          <div class="stat-note" data-i18n="p4.s3n">Protein structure indicators</div>
+          <div class="stat-label">Focus</div>
+          <div class="stat-val" style="font-size:13px;">Active site</div>
+          <div class="stat-note">Ligand interactions & conformational dynamics</div>
         </div>
       </div>
-      <p class="proj-desc" data-i18n="p4.desc">Structural bioinformatics workflow for protein modeling and functional interpretation.<strong>Protein structures were predicted and analyzed using AlphaFold and UCSF Chimera</strong> to evaluate domain organization, structural conservation, molecular interactions, and potential functional implications.</p>
+      <p class="proj-desc" data-i18n="p4.desc">Comparative structural analysis of native and inhibitor-bound <em>Drosophila melanogaster</em> Acetylcholinesterase (PDB: 1QO9 & 1QON). Used <strong>UCSF Chimera</strong> to characterize active site geometry, surface charge distribution, ligand-protein van der Waals contacts, hydrogen bond networks, and conformational dynamics via Morph Conformations analysis.</p>
       <div class="proj-tools">
-        <span class="tag">AlphaFold</span><span class="tag">USCF Chimera</span><span class="tag">Structural Bioinformatics</span><span class="tag">Protein Modeling</span>
+        <span class="tag">UCSF Chimera</span><span class="tag">RCSB PDB</span><span class="tag">Structural Bioinformatics</span><span class="tag">Enzyme Kinetics</span>
       </div>
     </div>
   </div>
@@ -693,14 +693,12 @@ const T = {
     'p3.s2l':'Platform','p3.s2v':'Microfluidics','p3.s2n':'Controlled flow environment',
     'p3.s3l':'Analysis','p3.s3v':'Quantitative','p3.s3n':'Image analysis pipeline',
     'p3.desc':'Investigation of stress-induced gene expression during biofilm formation in <em>E. coli</em> using <strong>Light Sheet Fluorescence Microscopy and microfluidics</strong>. Quantitative image analysis tracks gene expression dynamics across biofilm development stages, linking transcriptional responses to spatial organization within the biofilm structure.',
-    'p4.meta':'Spatial analysis · GIS · Public health',
-    'p4.name':'Water Quality &amp; Intestinal Disease Risk in Colombia',
-    'p4.s1l':'Tool','p4.s1n':'Spatial analysis platform',
-    'p4.s2l':'Scope','p4.s2v':'National','p4.s2n':'Colombia-wide monitoring data',
-    'p4.s3l':'Domain','p4.s3v':'Public health','p4.s3n':'Water quality indicators',
-    'p4.desc':'Spatial analysis of drinking water quality indicators and their relationship with public health outcomes across Colombia. Uses <strong>GIS tools and national monitoring datasets</strong> to map the geographic correlation between water contamination and intestinal disease incidence — providing an evidence base for public health intervention prioritization.',
-    's.skills.tag':'Technical skills','s.skills.title':'Tools &amp; methods',
-    'st.l1':'Bioinformatics','st.l2':'Computational Biology','st.l3':'Data Science &amp; Statistics','st.l4':'Microbial Biotechnology',
+    'p4.meta':'Structural bioinformatics · UCSF Chimera · Enzyme active site analysis',
+    'p4.name':'Structural Analysis of Acetylcholinesterase via Molecular Visualization',
+    'p4.s1l':'Enzyme','p4.s1n':'Acetylcholinesterase · PDB: 1QO9 & 1QON',
+    'p4.s2l':'Tool','p4.s2v':'UCSF Chimera','p4.s2n':'X-ray crystallography structures',
+    'p4.s3l':'Focus','p4.s3v':'Active site','p4.s3n':'Ligand interactions & conformational dynamics',
+    'p4.desc':'Comparative structural analysis of native and inhibitor-bound <em>Drosophila melanogaster</em> Acetylcholinesterase (PDB: 1QO9 & 1QON). Used <strong>UCSF Chimera</strong> to characterize active site geometry, surface charge distribution, ligand-protein van der Waals contacts, hydrogen bond networks, and conformational dynamics via Morph Conformations analysis.',    'st.l1':'Bioinformatics','st.l2':'Computational Biology','st.l3':'Data Science &amp; Statistics','st.l4':'Microbial Biotechnology',
     'st.b1':'Metagenomics · shotgun &amp; amplicon','st.b2':'Genome assembly &amp; MAG recovery','st.b3':'Functional annotation pipelines','st.b4':'Microbiome analysis',
     'st.c1':'Genome-scale metabolic models (GEMs)','st.c3':'Microbial community simulations','st.c4':'Systems biology approaches',
     'st.d2':'Statistical analysis &amp; multivariate methods','st.d4':'Machine learning fundamentals',
@@ -758,8 +756,7 @@ const T = {
     'p4.s1l':'Herramienta','p4.s1n':'Plataforma de análisis espacial',
     'p4.s2l':'Alcance','p4.s2v':'Nacional','p4.s2n':'Datos de monitoreo a nivel Colombia',
     'p4.s3l':'Dominio','p4.s3v':'Salud pública','p4.s3n':'Indicadores de calidad del agua',
-    'p4.desc':'Análisis espacial de indicadores de calidad del agua potable y su relación con resultados de salud pública en Colombia. Usa <strong>herramientas SIG y conjuntos de datos de monitoreo nacional</strong> para mapear la correlación geográfica entre contaminación del agua e incidencia de enfermedades intestinales — proporcionando una base de evidencia para la priorización de intervenciones de salud pública.',
-    's.skills.tag':'Habilidades técnicas','s.skills.title':'Herramientas y métodos',
+    'p4.desc':'Análisis espacial de indicadores de calidad del agua potable y su relación con resultados de salud pública en Colombia. Usa <strong>herramientas SIG y conjuntos de datos de monitoreo nacional</strong> para mapear la correlación geográfica entre contaminación del agua e incidencia de enfermedades intestinales — proporcionando una base de evidencia para la priorización de intervenciones de salud pública.',    's.skills.tag':'Habilidades técnicas','s.skills.title':'Herramientas y métodos',
     'st.l1':'Bioinformática','st.l2':'Biología Computacional','st.l3':'Ciencia de Datos y Estadística','st.l4':'Biotecnología Microbiana',
     'st.b1':'Metagenómica · shotgun y amplicón','st.b2':'Ensamblaje de genomas y recuperación MAG','st.b3':'Pipelines de anotación funcional','st.b4':'Análisis de microbioma',
     'st.c1':'Modelos metabólicos a escala genómica (GEMs)','st.c3':'Simulaciones de comunidades microbianas','st.c4':'Enfoques de biología de sistemas',
